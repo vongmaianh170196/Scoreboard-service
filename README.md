@@ -10,7 +10,7 @@ Quick start
 `cd ..`
 
 For server testing at localhost:5000
-npm run server
+`npm run server`
 
 For whole application testing at localhost:3000
-npm run dev
+`npm run dev`
