@@ -10,7 +10,7 @@ export const Scores = () => {
     })
     const {name, score} = formData;
     useEffect(() => {
-        axios.get('/api/scores').then(res => setScores(res.data) )        
+        axios.get('/api/scores').then(res => setScores(res.data.sort((a,b) => b.score - a.score)) )        
     }, []);
 
     const onChange = e => {
@@ -26,7 +26,7 @@ export const Scores = () => {
                 let high = [...scores].sort((a,b) => b.score - a.score)
                 return setScores(high);
             default:
-                return scores
+                return setScores(scores)
         }
     }
 
@@ -38,7 +38,8 @@ export const Scores = () => {
                 'Content-Type': 'application/json'
             }
         }
-        axios.post('/api/scores', JSON.stringify(newScore), config).then(res => setScores([...scores, res.data]))
+        axios.post('/api/scores', JSON.stringify(newScore), config).then(res => setScores([...scores, res.data].sort((a,b) => b.score - a.score)))
+        
     }
 
     return (
@@ -46,14 +47,13 @@ export const Scores = () => {
             <div className="sort-opt">
                 <p>Sort by: </p>
                 <select onChange={e => onChangeSelect(e)} className="form-control form-control-select">
-                    <option value="none">---</option>
                     <option value="high">High - Low</option>
                     <option value="low">Low - High</option>
                 </select>
             </div>
             <div className="list">{scores.map(score => <ScoreItem key={score.id} score={score}/>)}</div>
             <div className="score-form">
-                <div className="form-input">
+                <div className="form-inputs">
                     <input placeholder="Name of player..." name="name" defaultValue={name} onChange={e => onChange(e)} className="form-control"/>            
                     <input name="score" defaultValue={score} onChange={e => onChange(e)} className="form-control"/>
                 </div>

@@ -4,7 +4,9 @@ import { Scores } from './components/Scores'
 export const App = () => {
   return(
         <Fragment>
-          <h3>Scoreboard</h3>
+          <div className="title">
+            <h3>Scoreboard</h3>
+          </div>
           <Scores/>
         </Fragment>
   )

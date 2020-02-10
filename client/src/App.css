@@ -7,6 +7,12 @@ body{
   margin: 0 auto;
   text-align: center;
 }
+.title{
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+}
+/* Form */
 .form-control{
   padding: .25em;
   border-radius: .5em;
@@ -31,6 +37,9 @@ input.form-control{
   border: 1px solid green;
   background-color: green;
   color: white;
+}
+.form-inputs{
+  margin-bottom: 1em;
 }
 /* Sort option */
 .sort-opt{
